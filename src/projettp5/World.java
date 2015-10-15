@@ -17,6 +17,7 @@ import java.util.logging.Logger;
  *
  * @author Romain
  */
+//Salut
 public class World {
 
     private int tailleMonde;
