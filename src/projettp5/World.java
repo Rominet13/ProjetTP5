@@ -114,7 +114,7 @@ public class World {
                 Archer Archeri = new Archer("Robin Des Bois"+i, 100, 0, 80, 50, 0, 0, 20, 0, 5, 10, origine, 30);
 
             boolean test2;
-            test2=false;
+            test2=true;
             while(test2){
                 int nouvx=generePos.nextInt(taille);
                 int nouvy=generePos.nextInt(taille);
@@ -138,7 +138,7 @@ public class World {
                 
                 Guerrier Guerrierk = new Guerrier("Gros Bill"+k, 100, 0, 80, 50, 0, 0, 20, 0, 1, 50, origine);
             boolean test2;
-            test2=false;
+            test2=true;
             while(test2){
                 int nouvx=generePos.nextInt(taille);
                 int nouvy=generePos.nextInt(taille);
