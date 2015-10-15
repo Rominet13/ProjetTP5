@@ -6,7 +6,7 @@
 package projettp5;
 //test de pull et fetch
 //hi
-//aïe
+
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
