@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package projettp5;
-
+//test de pull et fetch
 import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
