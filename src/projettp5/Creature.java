@@ -255,7 +255,7 @@ public abstract class Creature implements Deplacable{
            
     }  
     for(int j=0;j<TablCreature.size();j++){
-        if((TablCreature.get(j).pos.equals(nouvellePos))&&(TablCreature.get(j).getNom()!=nom)){
+        if((TablCreature.get(j).pos.equals(nouvellePos))&&(TablCreature.get(j).getNom()!=nom)&&(nouvellePos.getAbcisse()>0)&&(nouvellePos.getOrdonnee()>0)){
             test=true;
         }
     }
@@ -265,26 +265,26 @@ public abstract class Creature implements Deplacable{
     System.out.println(getNom()+" se deplace");
     System.out.println(" ");
     }
-    public boolean APorter(World monde){
+   /* public boolean APorter(World monde){
     boolean test;
     test= false;
     for(int i1=0;i1<monde.getlArcher().size();i1++){
-                if(this.pos.distance(monde.getlArcher().get(i1).pos)<monde.getlArcher().get(i1).getDistAttMax()){
+                if((this.pos.distance(monde.getlArcher().get(i1).pos)<(monde.getlArcher().get(i1).getDistAttMax()+0.5))&&(this.pos.distance(monde.getlArcher().get(i1).pos)>1.5)){
                     test=true;
             }
             }
     for(int i2=0;i2<monde.getlGuerrier().size();i2++){
-                if(this.pos.distance(monde.getlGuerrier().get(i2).pos)<monde.getlGuerrier().get(i2).getDistAttMax()){
+                if(this.pos.distance(monde.getlGuerrier().get(i2).pos)<(monde.getlGuerrier().get(i2).getDistAttMax()+0.5)){
                     test=true;
             }
             }
     for(int i3=0;i3<monde.getlMage().size();i3++){
-                if(this.pos.distance(monde.getlGuerrier().get(i3).pos)<monde.getlMage().get(i3).getDistAttMax()){
+                if(this.pos.distance(monde.getlGuerrier().get(i3).pos)<(monde.getlMage().get(i3).getDistAttMax()+0.5)){
                     test=true;
             }
             }
     for(int i4=0;i4<monde.getlPaysan().size();i4++){
-                if(this.pos.distance(monde.getlPaysan().get(i4).pos)<monde.getlPaysan().get(i4).getDistAttMax()){
+                if(this.pos.distance(monde.getlPaysan().get(i4).pos)<(monde.getlPaysan().get(i4).getDistAttMax()+0.5)){
                     test=true;
             }
             }
@@ -305,238 +305,55 @@ public abstract class Creature implements Deplacable{
             } 
     return test;
 }
+    */
     
-    
-    public void deplacerIA(String[][] a) {
-        System.out.println(getNom() + " se deplace");
-        Random genAlea = new Random();
-
-        int x = (int)this.pos.getAbcisse();
-        int y = (int)this.pos.getOrdonnee();
-        int[] testd = new int[8];
-        int c = 0;
-        
-        
-        
-        
-//        boolean fin = false;  pour ancienne version du choix de nouvelle case
-        int l = a.length;
-//        System.out.println(a.length);   pour le débogage
-        
-        //affichage du plateau de jeu avec le déplacement pour comparaison
-//        System.out.println("Plateau avant déplacement:  \n");
-//        int z = 0, e = 0;
-//        while (z < l) {
-//            e = 0;
-//            while (e < l) {
-//                System.out.print(a[e][z]);
-//                e++;
-//            }
-//            System.out.println("");
-//            z++;
-//        }
-// fin de l'affichage
-        
-// fonction alentour inséré, pour connaitre ce qu'il y a à coté du personnage: vide ou limite du terrain=2 ; autre personnage=1 
-//On restre l'information dans un vecteur de 8 case, et on tourne dans le sens inverse des aiguilles d'une montre (case 0=à droite, case1=en haut à droite de l'affichage)        
-//    On teste chaque case : d'abord pour voir si elle est en dehors du terrain(on la met à 2 dans le else), sinon si la case est déjà occupé on rentre 1, sinon rien est fait(case reste à 0)
-        if ((x + 1) < l - 1) {
-            if (!a[x + 1][y].equals(" 0")) {
-                testd[0] = 1;
-                c++;
-            }
-        } else {
-            testd[0] = 2;
-            c++;
+    public void deplacerIA(ArrayList<Creature> TablCreature) {
+        int direction;
+    boolean test=true;
+    Random genereDirection= new Random();
+    Point2D nouvellePos=new Point2D(pos);
+    while(test){
+    test= false;
+    direction=genereDirection.nextInt(9);
+    switch(direction)
+    {
+        case 1:
+             nouvellePos.translation(1,0);
+            break;
+        case 2:
+             nouvellePos.translation(1,1);
+            break;
+        case 3:
+            nouvellePos.translation(0,1);
+            break;
+        case 4:
+            nouvellePos.translation(-1,1);
+            break;
+        case 5:
+            nouvellePos.translation(-1,0);
+            break;
+        case 6:
+            nouvellePos.translation(-1,-1);
+            break;
+        case 7:
+            nouvellePos.translation(0,-1);
+            break;
+        case 8:
+            nouvellePos.translation(1,-1);
+            break;
+        default:
+            System.out.println("move error");
+           
+    }  
+    for(int j=0;j<TablCreature.size();j++){
+        if((TablCreature.get(j).pos.equals(nouvellePos))&&(TablCreature.get(j)!=this)){
+            test=true;
         }
-
-        if ((x + 1 < l) && (y + 1 < l - 1)) {
-            if (!a[x + 1][y + 1].equals(" 0")) {
-                testd[7] = 1;
-                c++;
-            }
-        } else {
-            testd[7] = 2;
-            c++;
-        }
-
-        if ((y + 1) < l - 1) {
-            if (!a[x][y + 1].equals(" 0")) {
-                testd[6] = 1;
-                c++;
-            }
-        } else {
-            testd[6] = 2;
-            c++;
-        }
-
-        if ((x - 1 >= 0) && (y + 1 < l - 1)) {
-            if (!a[x - 1][y + 1].equals(" 0")) {
-                testd[5] = 1;
-                c++;
-            }
-
-        } else {
-            testd[5] = 2;
-            c++;
-        }
-        if ((x - 1) >= 0) {
-            if (a[x - 1][y].equals(" 0")) {
-                testd[4] = 1;
-                c++;
-            }
-        } else {
-            testd[4] = 2;
-            c++;
-        }
-
-        if (((x - 1) >= 0) && ((y - 1) >= 0)) {
-            if (a[x - 1][y - 1].equals(" 0")) {
-                testd[3] = 1;
-                c++;
-            }
-        } else {
-            testd[3] = 2;
-            c++;
-        }
-
-        if ((y - 1) >= 0) {
-            if (a[x][y - 1].equals(" 0")) {
-                testd[2] = 1;
-                c++;
-            }
-        } else {
-            testd[2] = 2;
-            c++;
-        }
-
-        if (((y - 1) >= 0) && ((x + 1) < l - 1)) {
-            if (a[x + 1][y - 1].equals(" 0")) {
-                testd[1] = 1;
-                c++;
-            }
-        } else {
-            testd[1] = 2;
-            c++;
-        }
-        //affichage des alentours du personnage dans le vecteur précédent testd
-        System.out.println("alentoure dans deplacerIA");
-        int r = 0;
-        while (r < 8) {
-            System.out.print(testd[r]);
-            r++;
-        }
-        
-//affichage du personnage à déplacer
-        this.affiche();
-        System.out.println("avant");
-        
-        //déplacement ou pas du personnage de façon aléatoire
-//        s'il est encerclé, il ne se déplace pas
-//        sinon déplacement aléatoire (TANT QUE)jusqu'à que la case où il doit se déplacer soit libre
-        if (c == 8) {
-            System.out.println(getNom() + " ne peut pas se déplacer. Il/elle est encerclé(e).");
-            c = 0;
-        } else {
-
-            int direction = genAlea.nextInt(7);
-            while (testd[direction] == 1 || testd[direction] == 2) {
-                direction = genAlea.nextInt(7);
-
-                //vielle version du choix de déplacement
-//            while (fin = false) {
-//                fin = true;
-//                if (((testd[0] == 1) || (testd[0] == 2)) && (direction == 0)) {
-//                    direction +=1;
-//                }
-//                if (((testd[1] == 1) || (testd[1] == 2)) && (direction == 1)) {
-//                    direction += 1;
-//                }
-//                if (((testd[2] == 1) || (testd[2] == 2)) && (direction == 2)) {
-//                    direction +=1;
-//                }
-//                if (((testd[3] == 1) || (testd[3] == 2)) && (direction == 3)) {
-//                    direction +=1;
-//                }
-//                if (((testd[4] == 1) || (testd[4] == 2)) && (direction == 4)) {
-//                    direction +=1;
-//                }
-//                if (((testd[5] == 1) || (testd[5] == 2)) && (direction == 5)) {
-//                    direction +=1;
-//                }
-//                if (((testd[6] == 1) || (testd[6] == 2)) && (direction == 6)) {
-//                    direction +=1;
-//                }
-//                if (((testd[7] == 1) || (testd[7] == 2)) && (direction == 7)) {
-//                    direction = 0;
-//                    fin = false;
-//                }
-            }
-            //Mise à 0 de la position occupé avant le déplacement
-//            a[x][y] = 0;
-// déplacement sur la nouvelle position, mise à 1 dans le plateau
-            switch (direction) {
-                case 0:
-                    pos.translation(1, 0);
-                    a[x + 1][y] = a[x][y];
-                    a[x][y]=" 0";
-                    break;
-
-                case 1:
-                    pos.translation(1, -1);
-                    a[x + 1][y - 1]= a[x][y];
-                    a[x][y]=" 0";
-                    break;
-                case 2:
-                    pos.translation(0, -1);
-                    a[x][y - 1] = a[x][y];
-                    a[x][y]=" 0";
-                    break;
-                case 3:
-                    pos.translation(-1, -1);
-                    a[x - 1][y - 1]= a[x][y];
-                    a[x][y]=" 0";
-                    break;
-                case 4:
-                    pos.translation(-1, 0);
-                    a[x - 1][y]= a[x][y];
-                    a[x][y]=" 0";
-                    break;
-                case 5:
-                    pos.translation(-1, 1);
-                    a[x - 1][y + 1] = a[x][y];
-                    a[x][y]=" 0";
-                    break;
-                case 6:
-                    pos.translation(0, 1);
-                    a[x][y + 1]= a[x][y];
-                    a[x][y]=" 0";
-                    break;
-                case 7:
-                    pos.translation(1, 1);
-                    a[x + 1][y + 1]= a[x][y];
-                    a[x][y]=" 0";
-                    break;
-                default:
-                    System.out.println("move error");
-            }
-            System.out.println("==================== ");
-        }
-        System.out.println("après");
-        this.affiche();
-        //affichage du plateau de jeu après le déplacement pour comparaison
-//        System.out.println("Plateau après déplacement:  ");
-//        int i = 0, j = 0;
-//        while (i < l) {
-//            j = 0;
-//            while (j < l) {
-//                System.out.print(a[j][i]);
-//                j++;
-//            }
-//            System.out.println("");
-//            i++;
-//        }
+    }
          
     }
-    
+    this.pos=nouvellePos;
+    System.out.println(getNom()+" se déplace");
+    System.out.println("");
+    }
 }

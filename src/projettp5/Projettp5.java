@@ -19,11 +19,10 @@ public class Projettp5 {
         System.out.println("*******************************************");
         System.out.println("Bienvenue dans World of ECN (Romain et Quentin, tous droits réservés)");
         System.out.println("*******************************************");
-        World WOECN= new World(3,6);
-        WOECN.affichePlateauDeJeu();
-//        System.out.println(WOECN.getlArcher().get(3));
-        WOECN.getlLoup().get(0).deplacerIA(WOECN.plateauDeJeu);
-//        WOECN.tourDeJeu(10);
+       World WOECN= new World(40,24);
+        WOECN.tourDeJeu(10);
+
+        
     }
     
 }

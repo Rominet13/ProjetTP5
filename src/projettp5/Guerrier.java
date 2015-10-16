@@ -159,6 +159,45 @@ public class Guerrier extends Personnage implements Combattant{
    this.combattre(TablAPorter.get(choixIndice.nextInt(TablAPorter.size())));
 
    }
-
+public boolean APorter(World monde){
+    boolean test;
+    test= false;
+    for(int i1=0;i1<monde.getlArcher().size();i1++){
+                if((this.pos.distance(monde.getlArcher().get(i1).pos)<(this.getDistAttMax()+0.5))){
+                    test=true;
+            }
+            }
+    for(int i2=0;i2<monde.getlGuerrier().size();i2++){
+                if((this.pos.distance(monde.getlGuerrier().get(i2).pos)<(this.getDistAttMax()+0.5))&&(this!=monde.getlGuerrier().get(i2))){
+                    test=true;
+            }
+            }
+    for(int i3=0;i3<monde.getlMage().size();i3++){
+                if((this.pos.distance(monde.getlMage().get(i3).pos)<(this.getDistAttMax()+0.5))){
+                    test=true;
+            }
+            }
+    for(int i4=0;i4<monde.getlPaysan().size();i4++){
+                if((this.pos.distance(monde.getlPaysan().get(i4).pos)<(this.getDistAttMax()+0.5))){
+                    test=true;
+            }
+            }
+    for(int i5=0;i5<monde.getlLoup().size();i5++){
+                if((this.pos.distance(monde.getlLoup().get(i5).pos)<(this.getDistAttMax()+0.5))){
+                    test=true;
+            }
+            }  
+    for(int i6=0;i6<monde.getlLapin().size();i6++){
+                if((this.pos.distance(monde.getlLapin().get(i6).pos)<(this.getDistAttMax()+0.5))){
+                    test=true;
+            }
+            } 
+    for(int i7=0;i7<monde.getlJoueur().size();i7++){
+                if((this.pos.distance(monde.getlJoueur().get(i7).getPersonnageChoisi().pos)<(this.getDistAttMax()+0.5))){
+                    test=true;
+            }
+            } 
+    return test;
+}
 }
 
