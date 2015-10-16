@@ -15,12 +15,15 @@ public class Projettp5 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        System.out.println("*******************************************");
-        System.out.println("Bienvenue dans World of ECN (Romain et Quentin, tous droits réservés)");
-        System.out.println("*******************************************");
+//        // TODO code application logic here
+//        System.out.println("*******************************************");
+//        System.out.println("Bienvenue dans World of ECN (Romain et Quentin, tous droits réservés)");
+//        System.out.println("*******************************************");
        World WOECN= new World(40,24);
-        WOECN.tourDeJeu(10);
+//        WOECN.tourDeJeu(10);
+       
+        SauvegardePartie svP = new SauvegardePartie("testSauvegarde1");  
+      svP.sauvegardePartie(WOECN);
 
         
     }

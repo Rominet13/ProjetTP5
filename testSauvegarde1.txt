@@ -1,0 +1,28 @@
+Taille 40 40
+NombreJoueur 24.0
+Joueur Romain 100 0 20 36.0 35.0
+Joueur Quentin 100 0 20 2.0 12.0
+Archer 0 100 0 20 36.0 35.0
+Archer 1 100 0 20 2.0 12.0
+Archer 2 100 0 20 29.0 2.0
+Archer 3 100 0 20 8.0 18.0
+Guerrier 0 100 0 20 18.0 5.0
+Guerrier 1 100 0 20 12.0 4.0
+Guerrier 2 100 0 20 9.0 15.0
+Guerrier 3 100 0 20 7.0 9.0
+Mage 0 10 10 10 30.0 22.0
+Mage 1 10 10 10 11.0 20.0
+Mage 2 10 10 10 20.0 23.0
+Mage 3 10 10 10 5.0 15.0
+Paysan 0 10 10 10 30.0 29.0
+Paysan 1 10 10 10 9.0 5.0
+Paysan 2 10 10 10 26.0 25.0
+Paysan 3 10 10 10 10.0 12.0
+Loup 0 10 10 18.0 35.0
+Loup 1 10 10 21.0 33.0
+Loup 2 10 10 33.0 15.0
+Loup 3 10 10 24.0 38.0
+Jiji la lapine0 10 10 7.0 3.0
+Jiji la lapine1 10 10 13.0 23.0
+Jiji la lapine2 10 10 17.0 21.0
+Jiji la lapine3 10 10 13.0 18.0

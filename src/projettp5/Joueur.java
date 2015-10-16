@@ -80,7 +80,7 @@ public class Joueur {
                pP=(varAlea1.nextInt(31)+50);
                dA=(varAlea2.nextInt(11)+30);
                pPar=(varAlea2.nextInt(11)+10);
-               nbFleche=(varAlea3.nextInt(16));
+               nbFleche=(varAlea3.nextInt(16)+5);
                personnageChoisi=new Archer(nomPersonnage,100,0,pA,pP,0,50,dA,0,3,pPar,origine,nbFleche);
                break;
            case 2:    
