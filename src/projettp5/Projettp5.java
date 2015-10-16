@@ -6,6 +6,7 @@
 package projettp5;
 
 //helo
+//test de remote...1 fetch...to be continued....final
 /**
  *
  * @author Quentin
